@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:00:04 by brheaume          #+#    #+#             */
-/*   Updated: 2023/06/05 16:04:49 by brheaume         ###   ########.fr       */
+/*   Created: 2023/06/02 10:35:05 by brheaume          #+#    #+#             */
+/*   Updated: 2023/06/05 10:07:35 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-
-void	*ft_action(void *args)
+static int	ft_isstrdigit(char *src)
 {
-	(void)args;
-	usleep(1000);
-	ft_putendl_fd("allo", TERM_OUPUT);
-	return NULL;
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		if (src[i] < '0' || src[i] > '9')
+			return (INCORRECT);
+		i++;
+	}
+	return (CORRECT);
 }
 
-int main(int ac, char **av)
+int	ft_verify_args(char **av)
 {
-	t_phi	*philo;
+	int	i;
 
-	if (ac == 6 || ac == 7)
+	i = 0;
+	while (av[j])
 	{
-		if (!ft_verify_args(av))
-			return (ft_error_simple("Invalid"));
+		if (!ft_isstrdigit(av[i]))
+			return (INCORRECT);
 	}
-	else
-		return (ft_error_simple("Missing arguments"));
+	return (CORRECT);
 }
