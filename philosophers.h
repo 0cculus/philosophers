@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 12:39:49 by brheaume          #+#    #+#             */
-/*   Updated: 2023/06/06 14:45:46 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:35:46 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_info
 	long long	droge;
 	long long	death;
 	long long	manger;
-	int			nb
+	int			nb;
 }	t_info;
 
 typedef struct	s_key
@@ -46,14 +46,20 @@ typedef struct	s_phi
 	t_key			*right;
 }	t_phi;
 
+long	phi_atol(char *src);
+void	phi_xfree(void *src);
 void	phi_purge(t_phi *phi);
 int		phi_strlen(char *src);
 void	*phi_action(void *args);
 int		phi_verify_args(char **av);
 void	phi_init_forks(t_phi **phi);
+void	phi_bzero(void *src, int size);
+int		phi_error_simple(char *message);
+void	*phi_calloc(int count, int size);
 t_info	phi_init_info(char **av, int ac);
 void	phi_putstr_fd(char *src, int fd);
 void	phi_putendl_fd(char *src, int fd);
+int		phi_error(char *message, t_phi **philo);
 void	phi_init_philo(t_phi **phi, char **av, int ac);
 
 
