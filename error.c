@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:00:04 by brheaume          #+#    #+#             */
-/*   Updated: 2023/06/06 14:46:30 by brheaume         ###   ########.fr       */
+/*   Created: 2023/06/02 13:24:17 by brheaume          #+#    #+#             */
+/*   Updated: 2023/06/06 15:05:27 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-
-void	*phi_action(void *args)
+void	phi_purge(t_phi *phi)
 {
-	(void)args;
-	usleep(1000);
-	phi_putendl_fd("allo", TERM_OUPUT);
-	return NULL;
+	int	i;
+
+	i = 0;
+	while (phi[i])
+	{
+		phi_xfree();
+		i++;
+	}
 }
 
-int main(int ac, char **av)
+int	phi_error(char *message, t_phi **philo)
 {
-	t_phi	*philo;
+	phi_putendl(message, ERROR_OUTPUT);
+	phi_purge(philo);
+	return (INCORRECT)
+}
 
-	if (ac == 5 || ac == 6)
-	{
-		if (!phi_verify_args(av))
-			return (phi_error_simple("Invalid"));
-		phi_init
-	}
-	else
-		return (phi_error_simple("Missing arguments"));
+int	phi_error_simple(char *message)
+{
+	phi_putendl(message, ERROR_OUTPUT);
+	return (INCORRECT);
 }

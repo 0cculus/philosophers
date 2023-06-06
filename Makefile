@@ -1,6 +1,7 @@
 NAME = philo
 
 SRC = main.c \
+	  utils.c
 
 
 OBJ = ${SRC:.c=.o}
@@ -13,11 +14,13 @@ LIBERATE = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 clean:
 	$(LIBERATE) $(OBJ)
 
 fclean: clean
+	$(LIBERATE) $(NAME)
 
 re: fclean all
 
