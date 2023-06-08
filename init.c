@@ -6,17 +6,19 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:20:21 by brheaume          #+#    #+#             */
-/*   Updated: 2023/06/06 14:45:51 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:50:08 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philosophers.h"
+
 void	phi_init_forks(t_phi *phi)
 {
-	t_key	right;
-	t_key	left;
+	t_key	*right;
 
 	right = phi_calloc(1, sizeof(t_key));
 	phi->right = right;
+	phi->left = NULL;
 }
 
 t_info	phi_init_info(char **av, int ac)
@@ -34,22 +36,18 @@ t_info	phi_init_info(char **av, int ac)
 	return (res);
 }
 
-void	phi_init_philo(t_phi **phi, char **av, int ac)
+void	phi_init_philo(t_phi *phi, int ac, char **av)
 {
-		pthread_t	tid;
-		long		nb;
-		long		i;
+	long	nb;
+	long	i;
 
-		nb = phi_atol(av[1]);
-		*phi = phi_calloc(nb, sizeof(t_phi));
-		i = 0;
-		while (i < nb)
-		{
-			pthread_create(&tid, NULL, phi_action, NULL);
-			pthread_join(tid, NULL);
-			phi[i].id = i + 1;
-			phi[i].pid = tid;
-			phi[i].info = phi_init_info(av, ac);
-			i++;
-		}
+	nb = phi_atol(av[1]);
+	phi = phi_calloc(nb, sizeof(t_phi));
+	i = 0;
+	while (i < nb)
+	{
+		phi[i].id = i + 1;
+		phi[i].info = phi_init_info(av, ac);
+		i++;
+	}
 }

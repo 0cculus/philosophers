@@ -1,8 +1,11 @@
 NAME = philo
 
 SRC = main.c \
-	  utils.c
-
+	  utils.c \
+	  init.c \
+	  write.c \
+	  error.c \
+	  verify.c \
 
 OBJ = ${SRC:.c=.o}
 

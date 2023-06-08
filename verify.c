@@ -6,9 +6,11 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:35:05 by brheaume          #+#    #+#             */
-/*   Updated: 2023/06/06 15:33:37 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:16:24 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philosophers.h"
 
 static int	phi_isstrdigit(char *src)
 {
@@ -17,7 +19,7 @@ static int	phi_isstrdigit(char *src)
 	i = 0;
 	while (src[i])
 	{
-		if (src[i] < '0' || src[i] > '9')
+		if (!(src[i] >= '0' && src[i] <= '9'))
 			return (INCORRECT);
 		i++;
 	}
@@ -28,7 +30,7 @@ int	phi_verify_args(char **av)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (av[i])
 	{
 		if (!phi_isstrdigit(av[i]))

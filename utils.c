@@ -6,13 +6,13 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 09:47:59 by brheaume          #+#    #+#             */
-/*   Updated: 2023/06/06 15:05:39 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:55:38 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int		phi_strlen(char *src)
+int	phi_strlen(char *src)
 {
 	int	i;
 
@@ -30,18 +30,18 @@ void	phi_bzero(void *src, int size)
 		((char *)src)[size] = 0;
 }
 
-void	phi_xfree(void *src)
+void	*phi_xfree(void *src)
 {
 	if (src)
 		free(src);
-	return NULL;
+	return (NULL);
 }
 
 void	*phi_calloc(int count, int size)
 {
 	void	*res;
 
-	res = mallloc(count * size + 1);
+	res = malloc(count * size + 1);
 	if (res)
 	{
 		phi_bzero(res, count * size + 1);
